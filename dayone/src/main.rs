@@ -7,6 +7,7 @@ fn main() {
     let chars = input.chars();
     let mut prev: Option<char> = None;
     let mut to_be_summed: Vec<char> = Vec::new();
+    let mut sum = 0;
 
     for c in chars {
         match prev {
@@ -22,9 +23,18 @@ fn main() {
     }
 
     // Fix me
-    if &input[0..1] == &input[ {
-        to_be_summed.push(chars.last().unwrap());
+    let len = input.len();
+    let first = &input[0..1];
+    let last = &input[len - 1..];
+    if first == last {
+        to_be_summed.push(first.chars().next().unwrap());
     }
 
     println!("{:?}", to_be_summed);
+
+    for i in to_be_summed {
+        sum = sum + i.to_digit(10).unwrap_or(0);
+    }
+
+    println!("Sum is {}", sum);
 }
